@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import './App.css';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Pocetna from './components/Pocetna';
+import Istorija from './components/Istorija';
 function App() {
+  const [racuni, setRacuni] = useState([]);
+
+  const kreirajRacun = (r) => {
+    setRacuni(prev => {
+      return [...prev, r];
+    })
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+
+      <Switch>
+        <Route path='/istorija'>
+          <Istorija racuni={racuni} />
+        </Route>
+        <Route path='/'>
+          <Pocetna kreirajRacun={kreirajRacun} ukupno={racuni.reduce((prev, element) => {
+            return prev + element;
+          }, 0)} />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
