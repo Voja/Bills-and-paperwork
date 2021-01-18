@@ -20,7 +20,7 @@ function App() {
         </Route>
         <Route path='/'>
           <Pocetna kreirajRacun={kreirajRacun} ukupno={racuni.reduce((prev, element) => {
-            return prev + element;
+            return prev + parseInt(element.iznos);
           }, 0)} />
         </Route>
       </Switch>

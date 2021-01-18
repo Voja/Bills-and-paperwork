@@ -6,7 +6,7 @@ export default function Istorija(props) {
     return (
         <div className='container'>
             <Navbar />
-            <h1 className='text-center'>Spisak uplata</h1>
+            <h1 className='text-center'>Spisak uplatnica</h1>
             {props.racuni.map(element => {
                 return (
                     <Racun podaci={element} />
